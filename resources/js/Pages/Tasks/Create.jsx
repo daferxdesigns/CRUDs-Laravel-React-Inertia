@@ -36,7 +36,7 @@ export default function Create({ users }) {
                             <div className="min-w-full align-middle">
                                 <form onSubmit={submit}>
                                     <div>
-                                        <InputLabel htmlFor="name" value="Name" />
+                                        <InputLabel htmlFor="name" value="Name" required />
 
                                         <TextInput
                                             id="name"
@@ -51,7 +51,7 @@ export default function Create({ users }) {
                                     </div>
 
                                     <div className="mt-4">
-                                        <InputLabel htmlFor="description" value="Description" />
+                                        <InputLabel htmlFor="description" value="Description" required />
 
                                         <TextInput
                                             id="description"
