@@ -3,6 +3,7 @@ import { Head, Link, router } from '@inertiajs/react';
 import AlertMessage from '@/Components/AlertMessage.jsx';
 import DangerButton from '@/Components/DangerButton.jsx';
 import LinkButton from '@/Components/LinkButton.jsx';
+import Pagination from '@/Components/Pagination.jsx';
 
 export default function PostsIndex({ tasks }) {
     const destroy = (id) => {
@@ -49,7 +50,7 @@ export default function PostsIndex({ tasks }) {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200 divide-solid">
-                                        {tasks && tasks.map((task) => (
+                                        {tasks && tasks.data && tasks.data.map((task) => (
                                             <tr key={task.id}>
                                                 <td className="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                                     {task.name}
@@ -69,6 +70,8 @@ export default function PostsIndex({ tasks }) {
                                         ))}
                                     </tbody>
                                 </table>
+
+                                <Pagination links={tasks.links} />
                             </div>
                         </div>
                     </div>
