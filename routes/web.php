@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\TaskController;
+use PHPUnit\Framework\Attributes\Ticket;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TicketsController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -25,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('tasks', TaskController::class);
+
+    Route::resource('tickets', TicketsController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
