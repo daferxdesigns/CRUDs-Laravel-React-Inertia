@@ -66,6 +66,23 @@ export default function Create({ users }) {
                                     </div>
 
                                     <div className="mt-4">
+                                        <InputLabel htmlFor="serial_number" value="Serial Number" required />
+
+                                        <TextInput
+                                            id="serial_number"
+                                            type="text"
+                                            name="name"
+                                            value={data.serial_number}
+                                            className="mt-1 block w-full"
+                                            onChange={(e) => setData('serial_number', e.target.value)}
+                                        />
+
+                                        <InputError message={errors.serial_number} className="mt-2" />
+                                    </div>
+                                    
+
+
+                                    <div className="mt-4">
                                         <InputLabel htmlFor="user_id" value="Assigned To" />
 
                                         <SelectInput

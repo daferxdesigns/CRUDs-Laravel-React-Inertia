@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Clients;
 use App\Models\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
@@ -34,8 +35,8 @@ class TicketsController extends Controller
      */
     public function create(): Response
     {
+        $clients = Clients::select(['id', 'name', 'lastname'])->pluck('name', 'id');
         $users = User::select(['id', 'name'])->pluck('name', 'id');
-
         return Inertia::render('Tickets/Create', compact('users'));
     }
 

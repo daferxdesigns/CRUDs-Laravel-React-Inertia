@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -19,10 +19,9 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-    
+     */
     public function down(): void
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('clients');
     }
-     */
 };
