@@ -1,5 +1,4 @@
 
-
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, router } from '@inertiajs/react';
 import AlertMessage from '@/Components/AlertMessage.jsx';
@@ -12,7 +11,7 @@ import Pagination from '@/Components/Pagination.jsx';
 export default function PostsIndex({ tickets }) {
     const destroy = (id) => {
         if (confirm('Are you sure?')) {
-            router.delete(route('tasks.destroy', { id }));
+            router.delete(route('tickets.destroy', { id }));
         }
     }
 
@@ -75,7 +74,7 @@ export default function PostsIndex({ tickets }) {
                                                     {/*excerpt(ticket.message)*/} {ticket.status}
                                                 </td>
                                                 <td className="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                                    <LinkButton href={route('tasks.edit', { id: ticket.id })}>
+                                                    <LinkButton href={route('tickets.edit', { id: ticket.id })}>
                                                         Edit
                                                     </LinkButton>
                                                     <DangerButton onClick={() => destroy(ticket.id)} type="button" className="ml-2 rounded-md bg-red-600 px-3 py-2 text-xs font-semibold uppercase tracking-widest text-white shadow-sm">

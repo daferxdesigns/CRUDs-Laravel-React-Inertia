@@ -18,6 +18,7 @@ class Tickets extends Model
         'the_client',
         'serial_number',
         'title',
+        'description',
         'message',
         'priority',
         'status',

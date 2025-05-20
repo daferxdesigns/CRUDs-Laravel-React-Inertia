@@ -36,6 +36,8 @@ class TaskController extends Controller
 
     public function edit(Task $task): Response
     {
+
+
         $users = User::select(['id', 'name'])->pluck('name', 'id');
 
         return Inertia::render('Tasks/Edit', compact('task', 'users'));

@@ -6,18 +6,22 @@ import InputError from '@/Components/InputError.jsx';
 import PrimaryButton from '@/Components/PrimaryButton.jsx';
 import SelectInput from '@/Components/SelectInput.jsx';
 
-export default function Edit({ task, users }) {
-    
+export default function Edit({ ticket, clients }) {
+
+
+
     const { data, setData, patch, processing, errors } = useForm({
-        name: task.name,
-        description: task.description,
-        user_id: task.user_id,
+        title: ticket.title || 'wala',
+        description: ticket.description || 'wala',
+     //   ticket_id:ticket.id || '',
+        user_id: clients.id || 'wala',
     });
+ 
 
     const submit = (e) => {
         e.preventDefault();
 
-        patch(route('tasks.update', {id:task.id}));
+        patch(route('tickets.update', {id:ticket.id}));
     };
 
     return (
@@ -37,18 +41,18 @@ export default function Edit({ task, users }) {
                             <div className="min-w-full align-middle">
                                 <form onSubmit={submit}>
                                     <div>
-                                        <InputLabel htmlFor="name" value="Name" required />
+                                        <InputLabel htmlFor="title" value="Title" required />
 
                                         <TextInput
-                                            id="name"
+                                            id="title"
                                             type="text"
                                             name="name"
-                                            value={data.name}
+                                            value={data.title}
                                             className="mt-1 block w-full"
-                                            onChange={(e) => setData('name', e.target.value)}
+                                            onChange={(e) => setData('title', e.target.value)}
                                         />
 
-                                        <InputError message={errors.name} className="mt-2" />
+                                        <InputError message={errors.title} className="mt-2" />
                                     </div>
 
                                     <div className="mt-4">
@@ -70,7 +74,7 @@ export default function Edit({ task, users }) {
                                         <InputLabel htmlFor="user_id" value="Assigned To" />
 
                                         <SelectInput
-                                            options={users}
+                                            options={clients}
                                             value={data.user_id}
                                             className="mt-1 block w-full"
                                             onChange={(e) => setData('user_id', e.target.value)}

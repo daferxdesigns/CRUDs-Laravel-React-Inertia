@@ -10,7 +10,9 @@ use App\Models\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\RedirectResponse;
+use PHPUnit\Framework\Attributes\Ticket;
 use App\Http\Requests\StoreTicketRequest;
+use App\Http\Requests\UpdateTicketRequest;
 
 class TicketsController extends Controller
 {
@@ -58,20 +60,24 @@ class TicketsController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Tickets $tickets)
+    public function edit(Tickets $ticket): Response
     {
-        //
+        //dd($ticket);
+        $clients = Clients::select(['id', 'name'])->pluck('name', 'id');
+        // $tickets = Tickets::select(['id', 'description', 'title'])->pluck('id', 'title');
+        return Inertia::render('Tickets/Edit', compact('ticket', 'clients'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Tickets $tickets)
+    public function update(Tickets $tickets, UpdateTicketRequest $request): RedirectResponse
     {
-        //
+
+        // dd($request->all());
+
+
+        $tickets->update($request->validated());
+
+        return redirect()->route('tickets.index')
+            ->with('message', __('Ticket updated successfully'));
     }
 
     /**
